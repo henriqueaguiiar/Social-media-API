@@ -3,10 +3,12 @@ package io.github.henriqueaguiiar.workshop_mongoDB.config;
 
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.User;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.repository.UserRepository;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+@Log4j
 @Configuration
 public class Instantiation implements CommandLineRunner {
 
@@ -25,5 +27,6 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
         userRepository.saveAll(java.util.Arrays.asList(maria, alex, bob));
+        log.info("Users seed savade in database.");
     }
 }
