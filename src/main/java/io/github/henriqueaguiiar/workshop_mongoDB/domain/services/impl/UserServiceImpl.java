@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService {
     public User insert(User user) {
         return userRepository.save(user);
     }
+    @Override
+    public void delete(String id) {
+        findById(id);
+        userRepository.deleteById(id);
+    }
 
     public User fromDTO(UserDtoInput userDtoInput) {
       return new User(userDtoInput.getId(), userDtoInput.getName(), userDtoInput.getEmail());
