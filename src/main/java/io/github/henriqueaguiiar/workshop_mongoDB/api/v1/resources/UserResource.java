@@ -1,6 +1,7 @@
 package io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources;
 
 
+import io.github.henriqueaguiiar.workshop_mongoDB.domain.dto.UserDtoOutput;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.User;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -23,9 +25,13 @@ public class UserResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<UserDtoOutput>> findAll() {
         List<User> users = userService.findAll();
-        return ResponseEntity.ok().body(users);
+        List<UserDtoOutput> userDtoOutputs = users
+                .stream()
+                .map(user -> new UserDtoOutput(user))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok().body(userDtoOutputs);
     }
 
 }
