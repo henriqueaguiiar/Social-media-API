@@ -9,7 +9,6 @@ import io.github.henriqueaguiiar.workshop_mongoDB.domain.services.exception.Obje
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {

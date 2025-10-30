@@ -2,6 +2,7 @@ package io.github.henriqueaguiiar.workshop_mongoDB.config;
 
 
 import io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.dto.AuthorDTO;
+import io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.dto.CommentDto;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.Post;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.User;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.repository.PostRepository;
@@ -42,6 +43,15 @@ public class Instantiation implements CommandLineRunner {
         Post post2 = new Post(null, Instant.now(), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
         postRepository.saveAll(Arrays.asList(post1, post2));
         log.info("Posts seed savade in database MongoDB. " + Instant.now());
+
+        CommentDto comment1 = new CommentDto("Boa viagem mano!", Instant.now(), new AuthorDTO(alex));
+        CommentDto comment2 = new CommentDto("Aproveite", Instant.now(), new AuthorDTO(bob));
+        CommentDto comment3 = new CommentDto("Tenha um ótimo dia!", Instant.now(), new AuthorDTO(alex));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment2));
+        post2.getComments().addAll(Arrays.asList(comment3));
+        postRepository.saveAll(Arrays.asList(post1, post2));
+        log.info("Comments added to posts. " + Instant.now());
 
         maria.getPosts().addAll(Arrays.asList(post1, post2));
         userRepository.save(maria);
