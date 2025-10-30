@@ -3,6 +3,7 @@ package io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.post;
 
 import io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.dto.UserDtoInput;
 import io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.dto.UserDtoOutput;
+import io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.util.URL;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.Post;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.User;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.services.impl.PostServiceImpl;
@@ -34,5 +35,12 @@ public class PostResource {
         return ResponseEntity.ok().body(post);
     }
 
+
+    @GetMapping(value = "/titlesearch")
+    public ResponseEntity<List<Post>> findByTitle(@RequestParam(value="text", defaultValue = "") String text) {
+        text= URL.decodeParam(text);
+        List<Post> posts = postService.findByTitle(text);
+        return ResponseEntity.ok().body(posts);
+    }
 
 }
