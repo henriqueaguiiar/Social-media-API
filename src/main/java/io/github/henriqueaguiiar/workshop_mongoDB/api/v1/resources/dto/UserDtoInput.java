@@ -1,4 +1,4 @@
-package io.github.henriqueaguiiar.workshop_mongoDB.domain.dto;
+package io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.dto;
 
 
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.User;

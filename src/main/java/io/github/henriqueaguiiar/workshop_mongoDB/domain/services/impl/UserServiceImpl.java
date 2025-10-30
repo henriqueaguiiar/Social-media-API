@@ -1,8 +1,7 @@
 package io.github.henriqueaguiiar.workshop_mongoDB.domain.services.impl;
 
 
-import io.github.henriqueaguiiar.workshop_mongoDB.domain.dto.UserDtoInput;
-import io.github.henriqueaguiiar.workshop_mongoDB.domain.dto.UserDtoOutput;
+import io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.dto.UserDtoInput;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.User;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.repository.UserRepository;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.services.UserService;
