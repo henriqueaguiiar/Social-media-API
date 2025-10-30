@@ -1,6 +1,8 @@
 package io.github.henriqueaguiiar.workshop_mongoDB.domain.services.impl;
 
 
+import io.github.henriqueaguiiar.workshop_mongoDB.domain.dto.UserDtoInput;
+import io.github.henriqueaguiiar.workshop_mongoDB.domain.dto.UserDtoOutput;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.User;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.repository.UserRepository;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.services.UserService;
@@ -33,4 +35,15 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
+
+    @Override
+    public User insert(User user) {
+        return userRepository.save(user);
+    }
+
+    public User fromDTO(UserDtoInput userDtoInput) {
+      return new User(userDtoInput.getId(), userDtoInput.getName(), userDtoInput.getEmail());
+    }
+
+
 }
