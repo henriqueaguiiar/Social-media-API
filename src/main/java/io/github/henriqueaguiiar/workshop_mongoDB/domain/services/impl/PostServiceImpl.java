@@ -2,8 +2,10 @@ package io.github.henriqueaguiiar.workshop_mongoDB.domain.services.impl;
 
 
 
+import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.Post;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.repository.PostRepository;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.services.PostService;
+import io.github.henriqueaguiiar.workshop_mongoDB.domain.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +23,12 @@ public class PostServiceImpl implements PostService {
     }
 
 
+    @Override
+    public Post findById(String id) {
+        Post post = postRepository.findById(id).orElse(null);
+        if(post == null) {
+            throw new ObjectNotFoundException("Post not found");
+        }
+        return post;
+    }
 }

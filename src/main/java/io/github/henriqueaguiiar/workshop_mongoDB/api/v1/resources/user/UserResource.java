@@ -1,8 +1,9 @@
-package io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources;
+package io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.user;
 
 
 import io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.dto.UserDtoInput;
 import io.github.henriqueaguiiar.workshop_mongoDB.api.v1.resources.dto.UserDtoOutput;
+import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.Post;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.entity.User;
 import io.github.henriqueaguiiar.workshop_mongoDB.domain.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,13 @@ public class UserResource {
         user = userService.update(user);
         return  ResponseEntity.noContent().build();
     }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
+    }
+
+
 
 }
